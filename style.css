@@ -71,7 +71,7 @@ a:hover
 	color: red;
 }
 
-p {
+p, h1, h2 {
 width: 80%;
 margin-left: 10%;
 }
