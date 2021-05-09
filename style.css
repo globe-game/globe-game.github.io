@@ -6,16 +6,16 @@ h1
 body
 {
 	background: url(https://i.imgur.com/DZ3QWdJ.png);
-	background-size: 100% 100%; 
-	margin: 0 auto;
+	background-size: 100% 100%; ;
 	background-attachment:fixed;
 	background-repeat:no-repeat;
 	background-position:center;
 	font-family: Verdana;
 	font-size: 150%;
+	margin: 0 0;
 }
 
-main, footer
+main
 {
 	width: 70%;
 	margin:0 auto;
@@ -71,7 +71,17 @@ a:hover
 	color: red;
 }
 
-p, h1, h2 {
+h1, h2 {
+width: 80%;
+margin-left: 10%;
+}
+
+main p {
+width: 80%;
+margin-left: 10%;
+}
+
+header p {
 width: 80%;
 margin-left: 10%;
 }
@@ -93,4 +103,48 @@ margin-left: 10%;
   margin: 1.25%;
   padding: 1.25% 2%;
   text-decoration: none;
+}
+
+footer
+{
+	background-color: #466995;
+	text-align: center;
+}
+
+
+
+.picture-left
+{
+	margin-left: 5%;
+	margin-top: 3%;
+	float: left;
+}
+.picture-right
+{
+	margin-right: 5%;
+	margin-top: 3%;
+	float: right;
+}
+
+.bloc
+{
+	display: inline-block;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+
+footer a:visited
+{
+	color: black;
+}
+
+footer a:hover
+{
+	color: red;
+}
+
+footer a
+{
+	color: black;
 }
