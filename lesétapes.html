@@ -39,28 +39,44 @@
 		<p>Nous nous sommes instantanément tournés vers Unity, en raison de l'incroyable documentation dont il bénificie sur internet (blogs, forums, tutos vidéo).</p>
 		<p>Ceci décidé, nous pouvions passer au développement du jeu.</p>
 		<p>La première chose dans un jeu de course, c'est la voiture. Et une voiture, ça roule.</p>
-		<p>Nous nous sommes donc entraînés à créer des cripts de déplacement, en utilisant des voitures trouvées sur internet.</p>
+		<p>Nous nous sommes donc entraînés à créer des scripts de déplacement, en utilisant des voitures trouvées sur internet.</p>
 		<p>Nos premières difficultés furent donc de faire tourner le véhicule, ainsi que la caméra.</p>
-		<p>Plus de détails sur les physiques à venir.</p>
+		<p>Nous avons ensuite voulu adapter notre script aux wheel colliders, là où avant les véhicules étaient conçus et se déplaçaient en un seul bloc.</p>
+		<p>Une autre idée était de mettre en place un système de boîte de vitesses.</p>
+		<p>Néanmoins, après la soutenance 2, nous avons jugé que ceci était inutile, nous sommes donc revenus à un script plus simple.</p>
 		<br>
 		<h2>La conception des véhicules</h2>
 		<p>Toujours pour sa documentation fournie, notre choix a vite été Blender quant à la conception des véhicules et autres modèles 3D.</p>
 		<p>Ne connaissant absolument rien du logiciel, il fut assez long de finaliser le premier véhicule : Espada.</p>
-		<p>Plus de détails sur la conception des véhicules à venir.</p>
+		<p>Le camion Chouf a été réalisée de la même façon.</p>
+		<p>Le grand-bi François fut compliqué à finaliser, à cause de son impressionnant nombre de pièces.</p>
+		<p>Au final, nous n'avons pas réussi à le faire rouler, et nous avons dû l'abandonner.</p>
+		<p>Pour le remplacer, nous avons choisi Alabama, une voiture de racing trouvée dans un asset gratuit sur internet.</p>
+		<br>
+		<h2>La conception des circuits</h2>
+		<p>Avoir des véhicules c'est bien, encore faut-il qu'ils aient quelque part où rouler.</p>
+		<p>La conception des circuits ne fut pas de tout repos.</p>
+		<p>Notre première intention était de créer du relief puis d'ajouter une route grâce à l'asset Easyrods3d.</p>
+		<p>Au final, nous avons décidé que la route serait justement formée avec le relief et le décor.</p>
+		<p>Le plus long fut de doser le relief pour rendre la route praticable, et de poser tous les modèles 3D du décor ainsi que leurs textures.</p>
+		<p>Au final, nous avons réalisé trois circuits : Dio dans le désert, Ice Age dans la neige, et Poke dans l'herbe et la roche.</p>
 		<br>
 
 		<h2>Les menus</h2>
 		<p>Quand vous démarrez un jeu de course, apparaissez-vous déjà au volant ? Bien sûr que non !</p>
 		<p>Pour faire les menus, nous avons utilisé l'objet "Canvas" d'Unity, sur lequel nous apposé boutons et autres textes les uns après les autres.</p>
 		<p>Il fallait bien positionner la hitbox des boutons par rapport aux textes, faire apparaître les bons menus au bon moment, et passer d'une scène à l'autre grâce à ces menus.</p>
-		<p>Plus de détails sur les menus à venir.</p>
+		<p>Le jeu possède un menu principal, un menu de sélection du véhicule, un menu de sélection du circuit, un menu du multijoueurs et un menu pause.</p>
+		<p>Mais une fois que le système a été compris, faire tous ces menus ne s'est pas avéré si compliqué que ça.</p>
 
 		<br>
 		<h2>L'intelligence artificielle</h2>
 		<p>Le joueur ne va quand même pas être seul sur le circuit ! Mario Kart peut-être, F-Zero peut-être, mais pas Trackmania.</p>
 		<p>Il y a deux aspects importants de l'IA : la trajectoire du véhicule et la gestion des obstacles.</p>
 		<p>Il ne faut pas que la voiture se bloque contre un cactus sur la route, mais il ne faut pas non plus que le véhicule parte dans le décor.</p>
-		<p>Plus de détails sur l'intelligence artificielle à venir.</p>
+		<p>La voiture suit un "chemin", une liste de nodes reliés entre eux.</p>
+		<p>Après avoir atteint un node, le véhicule se dirige seul vers le suivant.</p>
+		<p>L'étape la plus longue ne fut pas tant de placer les nodes que de faire des tests, encore et encore, et ajuster la vitesse des véhicules, le placement des nodes ou carrément le circuit, quand une IA se bloquait dans le décor, se retournait ou rentrait dans une autre.</p>
 		<br>
 
 		<h2>Le multijoueurs</h2>
@@ -70,8 +86,26 @@
 		<p>Pour que plusieurs courses puissent avoir lieu en même temps, il a fallu gérer la création de "rooms".</p>
 		<p>Après avoir fait les menus nécessaires pour créer et rejoindre des rooms, il a fallu faire apparaître les joueurs sur le circuit.</p>
 		<p>Le problème le plus compliqué à régler de cette partie fut que l'apparition des véhicules sur les points de spawn était gérée aléatoirement, causant parfois l'apparition de deux véhicules l'un sur l'autre.</p>
-		<p>Plus de détails sur le multijoueurs à venir.</p>
+		<p>Ce problème a été réglé grâce à l'actor number, une fonctionnalité de Photon qui attribue un nombre à chaque joueur, 1 pour le créateur de la room, puis 2, 3, etc.</p>
+		<p>Permettre de choisir le circuit ne fut pas compliqué, il a simplement fallu ajouter des points d'apparition sur les deux autres circuits.</p>
 
+		<br>
+
+		<h2>Reset, compte à rebours et ligne d'arrivée</h2>
+		<p>En appuyant sur la touche R, le joueur peut revenir au point d'apparition, au départ du circuit.</p>
+		<p>Cette fonctionnalité fut facile à implémenter en mode solo, il suffisait de changer la position et la rotation de la voiture pour celles du point d'apparition.</p>
+		<p>Par contre, en multijoueurs, pour une question de synchronisation, il a fallu détruire le gameobject du joueur et en recréer un au point de spawn.</p>
+		<br>
+		<p>Le compte à rebours fut très simple à implémenter. Un canvas comporte 4 textes, "3", "2", "1", et "GO".</p>
+		<p>Un script affiche chaque texte dans l'ordre, avec un délai d'une seconde entre chaque texte.</p>
+		<br>
+		<p>Pour la ligne d’arrivée, ce fut bien plus compliqué.</p>
+		<p>Pour détecter les véhicules, un collider a été mis sur la ligne d’arrivée.</p>
+		<p>Mais il détectait aussi ceux des roues, il a donc fallu faire en sorte qu’il ne détecte que les box colliders.</p>
+		<p>À chaque contact, un script faisait augmenter une variable qui allait faire afficher le bon texte une fois le joueur arrivé.</p>
+		<p>Pour détecter le joueur, nous avons utilisé les tags, en attribuant le tag "Terrain" au véhicule du joueur.</p>
+		<p>Pour le mode multijoueurs, pas besoin de différencier les IA du joueur.</p>
+		<p>Dès qu'un joueur a franchi la ligne d'arrivée, un message "Le 1e est arrivé !" apparaît pour tous les joueurs, puis "Le 2e est arrivé !", etc.</p>
 		<br>
 
 		<p class='fren'><a href="index.html">Retour</a></p>
