@@ -45,20 +45,33 @@
 		<p>The first thing in a racing game is the car. And the car must drive.</p>
 		<p>So we practiced creating travel scripts, by using cars found on the internet.</p>
 		<p>Our first difficulties were to make the vehicle turn, as well as the camera.</p>
-		<p>More details on the physics coming soon.</p>
+		<p>We then wanted to adapt our script to wheel colliders, because before the vehicles were designed and moved in one piece.</p>
+		<p>Another idea was to implement a gearbox system.</p>
+		<p>Nevertheless, after the 2nd presentation, we judged that this was unnecessary, so we went back to a simpler script.</p>
 		<br>
 		<h2>The vehicles conception</h2>
 		<p>Still for its documentation, our choice was quickly Blender for the design of vehicles and other 3D models.</p>
 		<p>Knowing absolutely nothing about the software, it took a long time to finalize the first vehicle: Espada.</p>
-		<p>More details on the vehicules conception coming soon.</p>
+		<p>The Chouf truck was made in the same way.</p>
+		<p>The 'grand-bi' François was complicated to finalize, because of its impressive number of parts.</p>
+		<p>Finally, we couldn't get it to run, and we had to give it up.</p>
+		<p>To replace it, we chose Alabama, a racing car found in a free asset on the internet.</p>
 		<br>
-
+		<h2>The vehicles conception</h2>
+		<p>Having vehicles is good, but they must have somewhere to drive.</p>
+		<p>The design of the circuits was not easy.</p>
+		<p>Our first intention was to create relief and then add a road using the Easyrods3d asset.</p>
+		<p>In the end, we decided that the road would be shaped with the relief and the background.</p>
+		<p>The most time consuming part of the process was dosing the relief to make the road passable, and laying all the 3D models of the scenery and their textures.</p>
+		<p>In the end, we made three circuits: Dio in the desert, Ice Age in the snow, and Poke in the grass and rock.</p>
+		<br>
 
 		<h2>The menus</h2>
 		<p>When you start a racing game, do you already appear behind the wheel? Of course not!</p>
 		<p>To make the menus, we used the "Canvas" object of Unity, on which we affixed buttons and other texts one after one.</p>
 		<p>It was necessary to position the hitbox of the buttons in relation to the texts, to make appear the good menus at the good moment, and to pass from a scene to the other with these menus.</p>
-		<p>More details on the menus coming soon.</p>
+		<p>The game has a main menu, a vehicle selection menu, a circuit selection menu, a multiplayer menu and a pause menu.</p>
+		<p>But once the system was understood, making all these menus was not that complicated.</p>
 		<br>
 
 
@@ -66,7 +79,9 @@
 		<p>The player will not be alone on the circuit! This is not Trackmania.</p>
 		<p>There are two important aspects of AI: vehicle trajectory and obstacle management.</p>
 		<p>You don't want the car to get stuck against a cactus on the road, but you also don't want the vehicle to go off into the landscape.</p>
-		<p>More details on the artificial intelligence coming soon.</p>
+		<p>The car follows a "path", a list of nodes linked together.</p>
+		<p>After reaching a node, the vehicle moves on its own to the next one.</p>
+		<p>The most time-consuming step was to test, again and again, and to adjust the speed of the vehicles, the placement of the nodes or even the circuit, when an AI got stuck in the scenery, flipped over or ran into another one.</p>
 		<br>
 
 
@@ -77,7 +92,24 @@
 		<p>So that several races can take place at the same time, it was necessary to manage the creation of "rooms".</p>
 		<p>After making the necessary menus to create and join rooms, it was necessary to make the players appear on the circuit.</p>
 		<p>The most difficult problem to solve in this game was that the appearance of vehicles on spawn points was randomly managed, sometimes causing two vehicles to appear on top of each other.</p>
-		<p>More details on the multiplayer mode coming soon.</p>
+		<p>This problem has been solved with the actor number, a Photon feature that assigns a number to each player, 1 for the room creator, then 2, 3, etc.</p>
+		<p>Allowing the circuit to be chosen was not complicated, it was simply a matter of adding appearance points on the other two circuits.</p>
+		<br>
+		<h2>Reset, countdown and finish line</h2>
+		<p>By pressing the R key, the player can return to the point of appearance at the start of the circuit.</p>
+		<p>This feature was easy to implement in single-player mode, it was enough to change the position and rotation of the car for those of the appearance point.</p>
+		<p>However, in multiplayer mode, for a question of synchronization, it was necessary to destroy the player's gameobject and recreate one at the spawn point.</p>
+		<br>
+		<p>The countdown was very simple to implement. A canvas has 4 texts, "3", "2", "1", and "GO".</p>
+		<p>A script displays each text in order, with a one second delay between each text.</p>
+		<br>
+		<p>For the finish line, it was much more complicated.</p>
+		<p>To detect the vehicles, a collider was put on the finish line.</p>
+		<p>But it also detected those of the wheels, so it was necessary to make it detect only the box colliders.</p>
+		<p>For each contact, a script increased a variable that would display the correct text once the player arrived.</p>
+		<p>To detect the player, we used the tags, assigning the tag "Terrain" to the player's vehicle.</p>
+		<p>For the multiplayer mode, there is no need to differentiate the AI from the player.</p>
+		<p>As soon as a player has crossed the finish line, a message "The 1st has arrived!" appears for all players, then "The 2nd has arrived!", etcetera.</p>
 		<br>
 
 		<p class='fren'><a href="globesite-en.html">Return</a></p>
